@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <table id="table" >
+        <thead>
+            <th>email</th>
+            <th>first name</th>
+            <th>last name</th>
+            <th>delete</th>
+            <th>Edit</th>
+        </thead>
+        <tbody>
+        <% for(var u of res){ %>
+            <tr>
+            <td><%= u.email %></td>
+            <td><%= u.firstname %></td>
+            <td><%= u.lastname %></td>
+            <% if(u.k){ %>
+                <td><button class="delete-row-btn" data-id='<%= u.email %>'  >delete</button></td>
+              <% } else{ %>  
+                <td><button disabled>delete</button></td>
+             <% } %>
+             <% if(u.k){ %>
+                <td><button class="edit-row-btn" data-id='<%= u.email %>' >edit</button></td>
+              <% } else{ %>  
+                <td><button disabled>update</button></td>
+             <% } %>
+            </tr>
+        <% } %>
+        </tbody>
+    </table>
+
+    <section hidden id="update-row">
+        <label>You can only add name and phone based on id given</label><br>
+        <label>email :</label>
+        <input type="email" id="update-email-input" name="update-email-input" ><br>
+        <label>password :</label>
+        <input type="password" id="update-password-input" name="update-password-input" ><br>
+        <label>first-name:</label>
+        <input type="text" id="update-firstname-input" name="update-firstname-input"><br>
+        <label>last-name:</label>
+        <input type="text" id="update-lastname-input" name="update-lastname-input"><br>
+        <button id="update-row-btn">Update</button>
+    </section>
+
+    <form action="/logout" method="post">
+        <input type="number" id="logout" name="logout" hidden value="1">
+        <button type="submit">Logout</button>
+    </form>
+
+<script src="static/out.js"></script>
+
+</body>
+</html>
